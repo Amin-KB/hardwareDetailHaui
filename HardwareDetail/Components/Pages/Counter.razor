@@ -1,0 +1,92 @@
+﻿@page "/counter"
+@using LibreHardwareMonitor.Hardware
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@foreach (var cpu in _corsDetail)
+{
+    <p>Name: @cpu.Name</p>
+    <br/>
+    <p>Temp @cpu.CoreTemp</p>
+    <br />
+}
+@code {
+    public class CpuDetail
+    {
+        public float CoreTemp { get; }
+        public string Name { get; }
+        public CpuDetail(float coreTemp,string name)
+        {
+            CoreTemp = coreTemp;
+            Name = name;
+        }
+    }
+    private bool _isMonitoring;
+    private int currentCount = 0;
+    public List<CpuDetail> _corsDetail = new();
+    private Computer _computer;
+    protected async override Task OnInitializedAsync()
+    {
+        // Create a Computer object with CPU monitoring enabled
+        _computer = new Computer()
+            {
+                IsCpuEnabled = true
+            };
+
+        // Open the computer object to start monitoring
+        _computer.Open();
+
+        _isMonitoring = true;
+
+    }
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        await MonitorCpuTemperature();
+    }
+  async Task  MonitorCpuTemperature()
+    {
+    
+        // Run the monitoring loop
+        while (true)
+        {
+            // Iterate through all hardware components
+            foreach (IHardware hardware in _computer.Hardware)
+            {
+                // Check if the hardware is a CPU
+                if (hardware.HardwareType == HardwareType.Cpu)
+                {
+                    // Update the hardware data
+                    hardware.Update();
+
+                    // Iterate through all sensors for the CPU
+                    foreach (ISensor sensor in hardware.Sensors)
+                    {
+                        // Check if the sensor type is Temperature
+                        if (sensor.SensorType == SensorType.Temperature)
+                        {
+                            _corsDetail.Add(new CpuDetail(sensor.Value.GetValueOrDefault(), sensor.Name));
+                            // Output the sensor name and temperature value
+                            Console.WriteLine($"{DateTime.Now} - {sensor.Name}: {sensor.Value.GetValueOrDefault()} °C");
+                            StateHasChanged();
+                        }
+                    }
+                }
+            }
+
+            // Sleep for a while before the next reading (e.g., 2 seconds)
+            Thread.Sleep(2000);
+
+        }
+        // Close the computer object when done (unreachable in this loop)
+        // computer.Close();
+    }
+
+    private void IncrementCount()
+    {
+        _isMonitoring = false;
+        currentCount++;
+    }
+}

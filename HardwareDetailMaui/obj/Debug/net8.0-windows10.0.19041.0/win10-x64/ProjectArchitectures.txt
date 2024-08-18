@@ -1,0 +1,1 @@
+E:\Developments\Others\HardwareDetail\HardwareDetailMaui\HardwareDetailMaui.csproj;x64

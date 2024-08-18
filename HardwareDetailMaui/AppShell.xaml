@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="HardwareDetailMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:HardwareDetailMaui"
+    Shell.FlyoutBehavior="Locked"
+    Shell.FlyoutWidth="60"
+    Title="HardwareDetailMaui">
+    <Shell.FlyoutBackground>
+        <LinearGradientBrush >
+            <GradientStop Color="#938ed9" Offset="0.0" />
+            <GradientStop Color="#a1aad4" Offset="0.5" />
+            <GradientStop Color="#f0e9ec" Offset="0.7" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackground>
+    <ShellContent    
+        Icon="processor.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>

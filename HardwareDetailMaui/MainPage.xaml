@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HardwareDetailMaui.MainPage"
+             xmlns:converters ="clr-namespace:HardwareDetailMaui.MVVM.Converters"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+    <ContentPage.Resources>
+        <converters:TempretureConverter x:Key="tempConverter"/>
+        <converters:LoadConverter x:Key="loadConverter"/>
+        <converters:VoltageConveter x:Key="voltageConverter"/>
+        <converters:CpuClockConverter x:Key="cpuClockConverter"/>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+
+            <Label
+                Text="{Binding CpuName}"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+           
+            <Frame BorderColor="Gray"
+                   CornerRadius="5"
+                   MaximumWidthRequest="600"
+                   Padding="8"
+                   Margin="10" >
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Offset="0.0" Color="#82d4a0" />
+                        <GradientStop Offset="1.0" Color="#e1f5ec" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <StackLayout>
+                    <Label Text="{Binding CoreAverage.Name}"
+                 FontSize="14"
+                 FontAttributes="Bold" />
+                    <BoxView Color="Gray"
+                  HeightRequest="2"
+                  HorizontalOptions="Fill" />
+                    <Grid ColumnDefinitions="7*,3*" 
+                          MinimumWidthRequest="300">
+                        <Label Text="Tempreture: "/>
+                        <Label Grid.Column="1" Text="{Binding CoreAverage.CoreTemp,Converter={StaticResource tempConverter}}"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                        <Label   Text="Min: "/>
+                        <Label Grid.Column="1"
+                               Text="{Binding CoreAverage.CoreTempMin,Converter={StaticResource tempConverter}}"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                        <Label Text="Max: "/>
+                        <Label Grid.Column="1"
+                               Text="{Binding CoreAverage.CoreTempMax,Converter={StaticResource tempConverter}}"/>
+                    </Grid>
+                    
+                </StackLayout>
+            </Frame>
+            <CollectionView ItemsSource="{Binding CpuDetails}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            <Frame BorderColor="Gray"
+                                   CornerRadius="5"
+                                   MinimumWidthRequest="400"
+                                   Padding="8"
+                                   Margin="10"
+                                  >
+                                <Frame.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Offset="0.0" Color="{Binding Color1}" />
+                                        <GradientStop Offset="1.0" Color="{Binding Color2}" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+                            
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"
+                                                FontSize="14"
+                                                FontAttributes="Bold" />
+                                    <BoxView Color="Gray"
+                                                 HeightRequest="2"
+                                                 HorizontalOptions="Fill" />
+                                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                                        <Label
+                                            Text="Tempreture: "/>
+                                        <Label Grid.Column="1" Text="{Binding CoreTemp,Converter={StaticResource tempConverter}}"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                                         <Label
+                                           Text="Min: "/>
+                                        <Label Grid.Column="1" Text="{Binding CoreTempMin,Converter={StaticResource tempConverter}}"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                                        <Label
+                                          Text="Max: "/>
+                                        <Label Grid.Column="1" Text="{Binding CoreTempMax,Converter={StaticResource tempConverter}}"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                                        <Label
+                                          Text="Load: "/>
+                                        <Label Grid.Column="1" Text="{Binding CoreLoad,Converter={StaticResource loadConverter}}"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                                        <Label  Text="Voltage: "/>
+                                        <Label Grid.Column="1" Text="{Binding Voltage,Converter={StaticResource voltageConverter}}"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="7*,3*" MinimumWidthRequest="300">
+                                        <Label  Text="Clock: "/>
+                                        <Label Grid.Column="1" Text="{Binding Clock,Converter={StaticResource cpuClockConverter}}"/>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </HorizontalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

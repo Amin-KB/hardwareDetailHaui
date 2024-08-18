@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Developments\\Others\\HardwareDetail\\HardwareDetail\\obj\\Debug\\net8.0-android\\scopedcss\\bundle\\HardwareDetail.styles.css",
+      "PackagePath": "staticwebassets\\HardwareDetail.styles.css"
+    },
+    {
+      "Id": "E:\\Developments\\Others\\HardwareDetail\\HardwareDetail\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "E:\\Developments\\Others\\HardwareDetail\\HardwareDetail\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\Developments\\Others\\HardwareDetail\\HardwareDetail\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\Developments\\Others\\HardwareDetail\\HardwareDetail\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "E:\\Developments\\Others\\HardwareDetail\\HardwareDetail\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.HardwareDetail.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.build.HardwareDetail.props",
+      "PackagePath": "build\\HardwareDetail.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.buildMultiTargeting.HardwareDetail.props",
+      "PackagePath": "buildMultiTargeting\\HardwareDetail.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-android\\staticwebassets\\msbuild.buildTransitive.HardwareDetail.props",
+      "PackagePath": "buildTransitive\\HardwareDetail.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
